@@ -1,6 +1,10 @@
 Version 1.3-0
 
-
+   o Use Rcmdr R Markdown headers.
+   
+   o Reorganize computation of diagnostics.
+   
+   o Small bug fixes.
 
 Version 1.2-2
 
