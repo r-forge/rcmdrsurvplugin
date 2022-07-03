@@ -6,10 +6,12 @@ CoxZPH <- function(){
 
 CoxDfbeta <- function(){ # works for survreg models as well
   doItAndPrint(paste0("plot(dfbeta(", ActiveModel(), "))"))
+  insertRmdSection(paste0("dfbeta Plots: ", ActiveModel()))
 }
 
 CoxDfbetas <- function(){ # works for survreg models as well
   doItAndPrint(paste0("plot(dfbetas(", ActiveModel(), "))"))
+  insertRmdSection(paste0("dfbetas Plots: ", ActiveModel()))
 }
 
 MartingalePlotsDialog <- function(){
@@ -76,7 +78,8 @@ plot.dfbetas.coxph <- function(x, ...){
 }
 
 dfbeta.survreg <- function(model, ...){
-  dfbeta <- as.matrix(residuals(model, type="dfbeta"))
+  nc <- length(coef(model))
+  dfbeta <- as.matrix(residuals(model, type="dfbeta"))[, 1:nc]
   colnames(dfbeta) <- names(coef(model))
   rownames(dfbeta) <- names(residuals(model))
   class(dfbeta) <- c("dfbeta.survreg", class(dfbeta))
@@ -93,7 +96,8 @@ plot.dfbeta.survreg <- function(x, ...){
 }
 
 dfbetas.survreg <- function(model, ...){
-  dfbetas <- as.matrix(residuals(model, type="dfbetas"))
+  nc <- length(coef(model))
+  dfbetas <- as.matrix(residuals(model, type="dfbetas"))[, 1:nc]
   colnames(dfbetas) <- names(coef(model))
   rownames(dfbetas) <- names(residuals(model))
   class(dfbetas) <- c("dfbetas.survreg", class(dfbetas))

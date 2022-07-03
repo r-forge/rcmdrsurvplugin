@@ -13,6 +13,7 @@ as.matrix "" NA NA
 attr "" NA NA
 coef "" NA NA
 coxph "" NA NA
+data.frame "" NA NA
 legend "" NA NA
 padNA "" NA NA
 predict "" NA NA
