@@ -1,4 +1,4 @@
-# last modified 2011-08-03 by J. Fox
+# last modified 2022-07-04 by J. Fox
 
 plot.coxph <- function(x, newdata, typical=mean, byfactors=FALSE, col=palette(), lty, conf.level=0.95, ...){
 	vars <- all.vars(formula(x)[-1])
@@ -399,13 +399,12 @@ PlotCoxph <- function(){
 			logger("remove(.newdata)")
 		}
 		if (marginal == 1){
-			doItAndPrint("par(new=TRUE)")
+			command <- "par(new=TRUE)\n"
 			lhs <- as.character(formula(get(.activeModel)))[[2]]
 			if (length(strata) == 0){
-				command <- paste("plot(survfit(", lhs, " ~ 1, data=", ActiveDataSet(), lev.survfit,
-						")", confint, ", lwd=2, lty=1, col=1, axes=FALSE)", sep="")
-				doItAndPrint(command)
-				command <- 'legend("topright", legend="Marginal survival", lty=1, lwd=2, col=1, bty="n")'
+				command <- paste(command, "plot(survfit(", lhs, " ~ 1, data=", ActiveDataSet(), lev.survfit,
+						")", confint, ", lwd=2, lty=1, col=1, axes=FALSE)\n", sep="")
+				command <- paste(command, 'legend("topright", legend="Marginal survival", lty=1, lwd=2, col=1, bty="n")')
 				doItAndPrint(command)
 			}
 			else{
@@ -414,9 +413,8 @@ PlotCoxph <- function(){
 				levels <- levels(with(XX, eval(parse(text=strata))))
 				command <- paste("plot(survfit(", lhs, " ~ strata(", paste(strata, collapse=","),
 						"), data=", ActiveDataSet(), lev.survfit, ")", confint, ", lwd=2, lty=1:", length(levels),
-						", col=1:", length(levels), ", axes=FALSE)", sep="")
-				doItAndPrint(command)
-				command <- paste('legend("topright", legend=c(',
+						", col=1:", length(levels), ", axes=FALSE)\n", sep="")
+				command <- paste(command, 'legend("topright", legend=c(',
 						paste(paste('"', levels, '"', sep=""), collapse=","),
 						"), lty=1:", length(levels), ', lwd=2, col=1:', length(levels),
 						', bty="n", title="Marginal Survival")', sep="")

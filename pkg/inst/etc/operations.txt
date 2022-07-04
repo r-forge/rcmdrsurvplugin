@@ -19,8 +19,6 @@ padNA "" NA NA
 predict "" NA NA
 quantile "" NA NA
 remove "" NA NA
-residuals "" NA NA
-scatter.smooth "" NA NA
 survdiff "" NA NA
 survfit "" NA NA
 survreg "" NA NA
